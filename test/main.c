@@ -74,11 +74,14 @@ int main(int argc, const char **argv)
 	for (size_t i = 0; i < 10; i++) {
 		string a = string_create(get_str());
 		string b = string_create(get_str());
-		string c = string_concat(a, b);
-		printf("'%s' + '%s' --> '%s' (%lu)\n", a->buf, b->buf, c->buf, c->len);
+		string c = string_create(get_str());
+		string ar[] = {a, b, c};
+		string z = string_concat(ar, sizeof(ar) / sizeof(*ar));
+		printf("'%s' + '%s' + '%s' --> '%s' (%lu)\n", a->buf, b->buf, c->buf, z->buf, z->len);
 		free(a);
 		free(b);
 		free(c);
+		free(z);
 	}
 	puts("");
 
