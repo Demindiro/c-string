@@ -38,7 +38,7 @@ string _string_copy_nolim(string s)
 
 string _string_copy_lim(string s, size_t start, size_t end)
 {
-	if (end >= s->len || start > end) {
+	if (end > s->len || start > end) {
 		errno = EINVAL;
 		return NULL;
 	}
