@@ -70,6 +70,16 @@ int main(int argc, const char **argv)
 		free(cpy);
 		free(str);
 	}
+	puts(" --- 0.5 string_concat ---");
+	for (size_t i = 0; i < 10; i++) {
+		string a = string_create(get_str());
+		string b = string_create(get_str());
+		string c = string_concat(a, b);
+		printf("'%s' + '%s' --> '%s' (%lu)\n", a->buf, b->buf, c->buf, c->len);
+		free(a);
+		free(b);
+		free(c);
+	}
 	puts("");
 
 	puts(" === 1: String comparison === ");

@@ -46,6 +46,20 @@ string _string_copy_lim(string s, size_t start, size_t end)
 }
 
 
+string string_concat(string a, string b)
+{
+	string c = malloc(sizeof(c->len) + a->len + b->len + 1);
+	if (c == NULL)
+		return NULL;
+	memcpy(c->buf, a->buf, a->len);
+	memcpy(c->buf + a->len, b->buf, b->len);
+	c->len = a->len + b->len;
+	c->buf[c->len] = 0;
+	return c;
+}
+
+
+
 /*
  * Other
  */

@@ -35,6 +35,12 @@ string _string_copy_lim(string str, size_t start, size_t end);
 
 
 /*
+ * Concatenates two strings
+ */
+string string_concat(string str1, string str2);
+
+
+/*
  * Checks two strings for equality.
  */
 int string_eq(string str1, string str2);
