@@ -43,7 +43,9 @@ string string_concat(string *strs, size_t count);
 /*
  * Checks two strings for equality.
  */
-int string_eq(string str1, string str2);
+int _string_eq(const string str1, const string str2);
+int _string_eq_lit(const string str1, const char *str2);
+#define string_eq(str1, str2) (_Generic(str2, string: 1, const string: 1, char *: 0, const char*: 0) ? _string_eq(str1, (void *)str2) : _string_eq_lit(str1, (void *)str2))
 
 
 #endif

@@ -72,9 +72,15 @@ string string_concat(string *s, size_t c)
 /*
  * Other
  */
-int string_eq(string s1, string s2)
+int _string_eq(const string s1, const string s2)
 {
 	return s1->len == s2->len && memcmp(s1->buf, s2->buf, s1->len) == 0;
 }
 
-
+int _string_eq_lit(const string s1, const char *s2)
+{
+	string str = string_create(s2);
+	int r = _string_eq(s1, str);
+	free(str);
+	return r;
+}

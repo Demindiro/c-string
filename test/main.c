@@ -87,7 +87,7 @@ int main(int argc, const char **argv)
 
 	puts(" === 1: String comparison === ");
 	puts(" --- 1.0: string_eq ---");
-	puts(" --- 1.0.1: Same string ---");
+	puts(" --- 1.0.0: Same string ---");
 	for (size_t i = 0; i < 10; i++) {
 		string str = string_create(get_str());
 		PRINT_STR(str);
@@ -103,6 +103,24 @@ int main(int argc, const char **argv)
 		printf("%d\n", string_eq(str1, str2));
 		free(str1);
 		free(str2);
+	}
+	puts(" --- 1.1: string_eq (with C string) ---");
+	puts(" --- 1.1.0: Same string ---");
+	for (size_t i = 0; i < 10; i++) {
+		const char *s = get_str();
+		string str = string_create(s);
+		PRINT_STR(str);
+		printf("%d\n", string_eq(str, s));
+		free(str);
+	}
+	puts(" --- 1.1.1: Different string ---");
+	for (size_t i = 0; i < 10; i++) {
+		string str1 = string_create(get_str());
+		const char *str2 = get_str();
+		PRINT_STR(str1);
+		puts(str2);
+		printf("%d\n", string_eq(str1, str2));
+		free(str1);
 	}
 	puts("");
 
