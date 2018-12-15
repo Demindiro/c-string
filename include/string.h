@@ -48,4 +48,10 @@ int _string_eq_lit(const string str1, const char *str2);
 #define string_eq(str1, str2) (_Generic(str2, string: 1, const string: 1, char *: 0, const char*: 0) ? _string_eq(str1, (void *)str2) : _string_eq_lit(str1, (void *)str2))
 
 
+/*
+ * Splits a string with the given character as delimiter.
+ */
+string *string_split(const string str, char delim, size_t *count);
+
+
 #endif
