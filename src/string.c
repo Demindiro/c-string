@@ -67,7 +67,42 @@ string string_concat(string *s, size_t c)
 	return r;
 }
 
-
+string *string_split(string str, char delim, size_t *count)
+{
+	size_t  size   = 256;
+	*count  = 0;
+	size_t  start  = 0, end = start;
+	string *splits = malloc(sizeof(*splits) * size);
+	while (1) {
+		if (str->buf[end] == delim || end >= str->len) {
+			if (*count >= size) {
+				size_t ns  = (size * 3) / 2;
+				void  *tmp = realloc(splits, sizeof(*splits) * ns);
+				if (tmp == NULL) {
+					for (size_t i = 0; i < *count; i++)
+						free(splits[i]);
+					free(splits);
+					return NULL;
+				}
+				splits = tmp;
+				size   = ns;
+			}
+			string s = string_copy(str, start, end);
+			if (s == NULL) {
+				for (size_t i = 0; i < *count; i++)
+					free(splits[i]);
+				free(splits);
+				return NULL;
+			}
+			splits[(*count)++] = s;
+			if (end >= str->len)
+				break;
+			start = end + 1;
+		}
+		end++;
+	}
+	return splits;
+}
 
 /*
  * Other
